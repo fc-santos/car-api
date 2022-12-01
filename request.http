@@ -1,0 +1,8 @@
+### Signup a user
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+    email: "filipesantos@live.ca",
+    password: "123"
+}
