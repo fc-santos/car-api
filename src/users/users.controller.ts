@@ -2,10 +2,13 @@ import {
   Body,
   Controller,
   Get,
+  NotFoundException,
+  Param,
   // Patch,
   // Param,
   // Query,
   Post,
+  Query,
   // Delete,
   // NotFoundException,
   Session,
@@ -27,17 +30,17 @@ export class UsersController {
     private authService: AuthService,
   ) {}
 
-  // @Get()
-  // findAllUsers(@Query('email') email: string) {
-  //   return this.usersService.find(email);
-  // }
+  @Get()
+  findAllUsers(@Query('email') email: string) {
+    return this.usersService.find(email);
+  }
 
-  // @Get('/:id')
-  // async findUser(@Param('id') id: string) {
-  //   const user = await this.usersService.findOne(parseInt(id));
-  //   if (!user) throw new NotFoundException('user not found');
-  //   return user;
-  // }
+  @Get('/:id')
+  async findUser(@Param('id') id: string) {
+    const user = await this.usersService.findOne(parseInt(id));
+    if (!user) throw new NotFoundException('user not found');
+    return user;
+  }
 
   @Post('/logout')
   logout(@Session() session: any) {
@@ -52,8 +55,8 @@ export class UsersController {
   }
 
   @Post('/signin')
-  async sigin(@Body() body: CreateUserDto, @Session() session: any) {
-    const user = await this.authService.sigin(body);
+  async signin(@Body() body: CreateUserDto, @Session() session: any) {
+    const user = await this.authService.signin(body);
     session.userId = user.id;
     return user;
   }

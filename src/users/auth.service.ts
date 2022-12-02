@@ -20,7 +20,7 @@ export class AuthService {
     return await this.usersService.create(dto);
   }
 
-  async sigin(creds: CreateUserDto) {
+  async signin(creds: CreateUserDto) {
     const [user] = await this.usersService.find(creds.email);
     if (!user) throw new NotFoundException('User not found');
     const pwMatches = await argon.verify(user.password, creds.password);
