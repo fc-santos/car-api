@@ -1,0 +1,17 @@
+### Signup a user
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+    "email": "filipesantos@levio.ca",
+    "password": "123"
+}
+
+### Signin as an existing user
+POST http://localhost:3000/auth/signin
+Content-Type: application/json
+
+{
+    "email": "filipesantos@levio.ca",
+    "password": "123"
+}
